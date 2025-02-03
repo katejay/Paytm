@@ -3,10 +3,9 @@ package org.pspl.TestUtils;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.pspl.pageObjects.ios.LoginPage;
 import org.pspl.utils.AppiumUtils;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +18,7 @@ public class IOSBaseTest extends AppiumUtils {
     public AppiumDriverLocalService service;
     public LoginPage loginPage;
 
-    @BeforeClass
+    @BeforeSuite
     public void ConfigureAppium() throws IOException, InterruptedException {
 
         Properties prop = new Properties();
@@ -53,15 +52,19 @@ public class IOSBaseTest extends AppiumUtils {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         loginPage = new LoginPage(driver); //change to home page
-        loginPage.getLogin(number, password);
+        if (number != null && password != null) {
+            loginPage.getLogin(number, password);
+        } else {
+            throw new IllegalArgumentException("Login credentials are missing");
+        }
     }
 
-    @AfterClass
+    @AfterSuite
     public void terminate() {
         //Close the driver session
         //driver.quit();
 
-        // Stop the Appium server
+        //Stop the Appium server
         //service.stop();
     }
 }

@@ -10,8 +10,10 @@ import java.util.Properties;
 
 public class PostInvestHome extends IOSBaseTest {
 
+    PostInvestHomePage postInvestHomePage;
+
     @Test
-    public void redirectPostInvest() throws InterruptedException, IOException {
+    public void redirectPostInvest() throws IOException {
 
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//org//pspl//resources//data.properties");
@@ -21,9 +23,12 @@ public class PostInvestHome extends IOSBaseTest {
         String bundleId = prop.getProperty("bundleId");
         driver.executeScript("mobile: deepLink", ImmutableMap.of("url", deepLinkUrl, "bundleId", bundleId));
 
-        Thread.sleep(5000);
-        driver.switchTo().alert().accept();
-        Thread.sleep(1000);
-        driver.switchTo().alert().accept();
+        postInvestHomePage = new PostInvestHomePage(driver);
+        postInvestHomePage.agreeAlert();
+    }
+
+    @Test(dependsOnMethods = {"redirectPostInvest"})
+    public void redirectAccount(){
+        postInvestHomePage.clickAccount();
     }
 }
