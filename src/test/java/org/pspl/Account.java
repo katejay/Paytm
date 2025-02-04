@@ -2,6 +2,7 @@ package org.pspl;
 
 import com.google.common.collect.ImmutableMap;
 import org.pspl.TestUtils.IOSBaseTest;
+import org.pspl.pageObjects.ios.AccountPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,14 +11,11 @@ public class Account extends IOSBaseTest {
     public AccountPage accountPage;
 
     @Test()
-        public void landAccount() {
-        driver.executeScript("mobile: deepLink", ImmutableMap.of("url", "paytmmp://mini-app?aId=6823bf94c6aa48f08fcc890469fea71a&data=eyJwYXJhbXMiOiIiLCJwYXRoIjoiIiwic3BhcmFtcyI6eyJwdWxsUmVmcmVzaCI6ZmFsc2UsImNhblB1bGxEb3duIjpmYWxzZSwic2hvd1RpdGxlQmFyIjpmYWxzZX19&url=https://wealth-stg.paytm.com/account", "bundleId", "com.one97.paytm"));
-    }
-
-    /*@Test(dependsOnMethods = {"landAccount"})
     public void validateText() throws InterruptedException {
+        System.out.println("Account driver 1 : " + driver);
         Thread.sleep(5000);
         accountPage = new AccountPage(driver);
+        System.out.println("Account driver 2 : " + driver);
         Assert.assertEquals(accountPage.getManageYourAccount(), "Manage Your Account");
         //Assert.assertEquals(accountPage.getHelp(), "Help");
         accountPage.clickHelp();
@@ -30,7 +28,7 @@ public class Account extends IOSBaseTest {
         driver.switchTo().alert().dismiss();
     }
 
-    @Test(enabled = false)
+    /*@Test(enabled = false)
     public void redirectHelp() {
         accountPage.clickRaiseATicket();
     }

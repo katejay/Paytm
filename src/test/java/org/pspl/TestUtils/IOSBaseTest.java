@@ -3,6 +3,7 @@ package org.pspl.TestUtils;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.pspl.pageObjects.ios.LoginPage;
 import org.pspl.utils.AppiumUtils;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -17,12 +18,14 @@ public class IOSBaseTest extends AppiumUtils {
     public IOSDriver driver;
     public AppiumDriverLocalService service;
     public LoginPage loginPage;
+    public Properties prop;
+    public FileInputStream fis;
 
     @BeforeSuite
     public void ConfigureAppium() throws IOException, InterruptedException {
 
-        Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//org//pspl//resources//data.properties");
+        prop = new Properties();
+        fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//org//pspl//resources//data.properties");
         prop.load(fis);
 
         String paytmApp = System.getProperty("user.dir") + "/src/test/java/org/pspl/resources/Paytm.app";
@@ -34,7 +37,7 @@ public class IOSBaseTest extends AppiumUtils {
         String automationName = prop.getProperty("automationName");
         String bundleId = prop.getProperty("bundleId");
 
-        String number = prop.getProperty("number");
+        String number = prop.getProperty("prNumber");
         String password = prop.getProperty("password");
 
         service = startAppiumServer(ipAddress, Integer.parseInt(port));
@@ -57,6 +60,8 @@ public class IOSBaseTest extends AppiumUtils {
         } else {
             throw new IllegalArgumentException("Login credentials are missing");
         }
+
+        System.out.println("iOSBase driver 1 : " + driver);
     }
 
     @AfterSuite

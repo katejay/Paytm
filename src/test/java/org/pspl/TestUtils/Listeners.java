@@ -26,6 +26,21 @@ public class Listeners extends AppiumUtils implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         // TODO Auto-generated method stub
         test.log(Status.PASS, "Test Passed");
+
+        try {
+            driver = (AppiumDriver) result.getTestClass().getRealClass().getField("driver")
+                    .get(result.getInstance());
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+
+        try {
+            test.addScreenCaptureFromPath(getScreenshotPath(result.getMethod().getMethodName(), driver), result.getMethod().getMethodName());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override

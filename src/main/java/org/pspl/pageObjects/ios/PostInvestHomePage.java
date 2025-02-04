@@ -17,7 +17,7 @@ public class PostInvestHomePage extends IOSActions {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @iOSXCUITFindBy(iOSClassChain = "confidential")
+    @iOSXCUITFindBy(xpath = "confidential")
     private WebElement clickOkAlert;
 
     @iOSXCUITFindBy(iOSClassChain = "confidential")
@@ -35,7 +35,7 @@ public class PostInvestHomePage extends IOSActions {
 
     public void clickAccount() {
         account.click();
-        new AccountPage(driver);
+        //new AccountPage(driver);
     }
 
     public void clickTransactions() {
