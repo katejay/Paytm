@@ -37,7 +37,7 @@ public class IOSBaseTest extends AppiumUtils {
         String automationName = prop.getProperty("automationName");
         String bundleId = prop.getProperty("bundleId");
 
-        String number = prop.getProperty("prNumber");
+        String number = System.getProperty("number")!=null ? System.getProperty("number") : prop.getProperty("number");
         String password = prop.getProperty("password");
 
         service = startAppiumServer(ipAddress, Integer.parseInt(port));

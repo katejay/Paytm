@@ -3,6 +3,7 @@ package org.pspl;
 import com.google.common.collect.ImmutableMap;
 import org.pspl.TestUtils.IOSBaseTest;
 import org.pspl.pageObjects.ios.DSHeaderPage;
+import org.pspl.pageObjects.ios.FundDetailsPage;
 import org.pspl.pageObjects.ios.PreInvestHomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ public class PreInvestHome extends IOSBaseTest {
 
     PreInvestHomePage preInvestHomePage;
     DSHeaderPage dsHeaderPage;
+    FundDetailsPage fundDetailsPage;
 
     @Test(priority = 1)
     public void redirectPreInvest() throws InterruptedException {
@@ -89,17 +91,50 @@ public class PreInvestHome extends IOSBaseTest {
         dsHeaderPage.clickBackIcon();
     }
 
-    @Test
-    public void validateFundDetails(){
-
-    }
-
-    @Test
-    public void validateChangeFund(){
-
-    }
 
     @Test(priority = 6)
+    public void validateFundDetailsHeader() {
+        preInvestHomePage.clickViewFundDetails();
+        dsHeaderPage = new DSHeaderPage(driver);
+        Assert.assertEquals(dsHeaderPage.getHelpLabel(),"Help");
+        dsHeaderPage.clickHelp();
+        Assert.assertEquals(dsHeaderPage.getConnectWithUs(), "Connect with us!");
+        dsHeaderPage.checkAvatar();
+        Assert.assertEquals(dsHeaderPage.getRaiseATicketText(), "Raise a ticket");
+        Assert.assertEquals(dsHeaderPage.getRaiseATicketSubText(), "Get prompt resolutions from our support team");
+
+        /* Commenting below line as this won't work on stage environment. will handle this later
+        dsHeaderPage.clickRaiseATicket();  */
+
+        dsHeaderPage.clickCancelHelp();
+
+        Assert.assertEquals(dsHeaderPage.getFundDetailsTitle(),"Fund Details");
+    }
+
+    @Test(priority = 7)
+    public void validateFundDetails(){
+        fundDetailsPage = new FundDetailsPage(driver);
+        fundDetailsPage.checkAMCLogo();
+        Assert.assertEquals(fundDetailsPage.getFundLabel(), prop.getProperty("defaultFundName"));
+
+
+        Assert.assertEquals(fundDetailsPage.getLockInLabel(),"Lock in");
+        Assert.assertEquals(fundDetailsPage.getLockIn(),prop.getProperty("defaultFundLockIn"));
+        Assert.assertEquals(fundDetailsPage.getSebiRiskometerLabel(),"SEBI Riskometer");
+        Assert.assertEquals(fundDetailsPage.getSebiRiskometer(),prop.getProperty("defaultFundSEBIRiskometer"));
+        Assert.assertEquals(fundDetailsPage.getDownloadFactSheetLabel(),"Download factsheet");
+        Assert.assertEquals(fundDetailsPage.getDownloadFactSheetSubTextLabel(),"Detailed view of all the scheme related information");
+        //fundDetailsPage.clickDownloadFactSheet();
+        Assert.assertEquals(fundDetailsPage.getSelectYourDailySIPAmountCTALabel(),"Select Your Daily SIP Amount");
+        fundDetailsPage.clickSelectYourDailySIPAmountCTA();
+    }
+
+    /*@Test
+    public void validateChangeFund(){
+
+    }*/
+
+    @Test(priority = 8)
     public void redirectPANPage(){
         preInvestHomePage.clickStartDailySIPCTA();
     }

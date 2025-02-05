@@ -1,0 +1,12 @@
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/AccountPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/DSHeaderPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/FundDetailsPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/LoginPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/PostInvestHomePage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/PreInvestHomePage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/RedeemRequestPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/SIPDetailsPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/TransactionDetailsPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/pageObjects/ios/TranscationsPage.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/utils/AppiumUtils.java
+/Users/jaykate/Documents/Automation/RegularMF/RegularMF/src/main/java/org/pspl/utils/IOSActions.java

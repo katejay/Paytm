@@ -6,12 +6,10 @@
         <listener class-name="org.pspl.TestUtils.Listeners"/>
     </listeners>
 
-    <test thread-count="1" name="Post Invest">
+    <test thread-count="1" name="Login">
         <classes>
-            <class name="org.pspl.PostInvestHome"/>
-            <class name="org.pspl.Account"/>
+            <class name="org.pspl.TestUtils.IOSBaseTest"/>
         </classes>
     </test>
 
 </suite>
-

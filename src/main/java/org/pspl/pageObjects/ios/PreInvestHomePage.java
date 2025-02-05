@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.pspl.utils.IOSActions;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class PreInvestHomePage extends IOSActions {
     public PreInvestHomePage(IOSDriver driver) {
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -96,7 +98,7 @@ public class PreInvestHomePage extends IOSActions {
 
     //Change logic here
     public List<String> getAmountList(){
-        List<WebElement> amountList = amount.findElements(By.xpath("confidential")
+        List<WebElement> amountList = amount.findElements(By.xpath("confidential"));
         List<String> amountLabel = new ArrayList<>();
         for(WebElement webElement : amountList) {
             amountLabel.add(webElement.getText());

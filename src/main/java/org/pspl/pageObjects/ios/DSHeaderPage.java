@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.pspl.utils.IOSActions;
 
+import java.time.Duration;
+
 public class DSHeaderPage extends IOSActions {
 
     IOSDriver driver;
@@ -14,6 +16,7 @@ public class DSHeaderPage extends IOSActions {
     public DSHeaderPage(IOSDriver driver) {
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -25,7 +28,6 @@ public class DSHeaderPage extends IOSActions {
 
     @iOSXCUITFindBy(accessibility = "confidential")
     private WebElement help;
-
 
     @iOSXCUITFindBy(accessibility = "confidential")
     private WebElement connectWithUs;
@@ -42,6 +44,8 @@ public class DSHeaderPage extends IOSActions {
     @iOSXCUITFindBy(accessibility = "confidential")
     private WebElement cancel;
 
+    @iOSXCUITFindBy(xpath = "confidential")
+    private WebElement fundDetailsTitle;
 
 
     public void checkLogo() {
@@ -82,5 +86,9 @@ public class DSHeaderPage extends IOSActions {
 
     public void clickCancelHelp() {
         cancel.click();
+    }
+
+    public String getFundDetailsTitle() {
+        return fundDetailsTitle.getText();
     }
 }

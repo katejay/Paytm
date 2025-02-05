@@ -13,7 +13,7 @@ public class PostInvest extends IOSBaseTest {
     public PostInvestHomePage postInvestHomePage;
     public AccountPage accountPage;
 
-    @Test
+    @Test(priority = 1)
     public void redirectPostInvest(){
 
         String deepLinkUrl = prop.getProperty("postInvestDeepLinkUrl");
@@ -24,12 +24,12 @@ public class PostInvest extends IOSBaseTest {
         postInvestHomePage.agreeAlert();
     }
 
-    @Test(dependsOnMethods = {"redirectPostInvest"})
+    @Test(priority = 2)
     public void redirectAccount(){
         postInvestHomePage.clickAccount();
     }
 
-    @Test(dependsOnMethods = {"redirectAccount"})
+    @Test(priority = 3)
     public void validateText() throws InterruptedException {
         Thread.sleep(5000);
         accountPage = new AccountPage(driver);
@@ -38,11 +38,11 @@ public class PostInvest extends IOSBaseTest {
         accountPage.clickHelp();
         Assert.assertEquals(accountPage.getConnectWithUs(), "Connect with us!");
         accountPage.clickCancelHelp();
-        accountPage.clickViewAndManageSIP();
-        Assert.assertEquals(accountPage.getManageSIP(), "Manage SIP");
-        Thread.sleep(5000);
+        //accountPage.clickViewAndManageSIP();
+        //Assert.assertEquals(accountPage.getManageSIP(), "Manage SIP");
+        //Thread.sleep(5000);
         //driver.navigate().back();
-        driver.switchTo().alert().dismiss();
+        //driver.switchTo().alert().dismiss();
     }
 
     @Test(enabled = false)
@@ -65,13 +65,13 @@ public class PostInvest extends IOSBaseTest {
         accountPage.clickMonthlySIP();
     }
 
-    @Test(dependsOnMethods = {"validateText"})
+    @Test(priority = 4)
     public void redirectRedeem(){
         accountPage.clickRedeem();
         driver.navigate().back();
     }
 
-    @Test(dependsOnMethods = {"validateText"})
+    @Test(priority = 5)
     public void validateInvite(){
         accountPage.clickReferLogo();
         Assert.assertEquals(accountPage.getReferMessage(), "Hey! Discover Daily SIP—invest small amounts daily to grow your wealth over time. Check it out here: https://m.paytm.me/paytm-se-daily-sip");

@@ -8,7 +8,7 @@
 
     <test thread-count="1" name="Post Invest">
         <classes>
-            <class name="org.pspl.PostInvest"/>
+            <class name="org.pspl.PostInvestHome"/>
         </classes>
     </test>
 
